@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.flatnine.bj.service.ProductService;
+import com.flatnine.bj.vo.Manufacture;
 import com.flatnine.bj.vo.Product;
 
 @Controller
@@ -49,10 +50,16 @@ public class ProductController {
 		return "products/detail";
 	}
 	
+	// 제품 등록 서식
 	@GetMapping("/showFormForAdd")
 	public String showFormForAdd(Model theModel) {
+		
 		Product product = new Product();
 		theModel.addAttribute("product", product);
+		
+		// 공장 목록 받아오기
+		List<Manufacture> manufactures = productService.findAllMfg();
+		theModel.addAttribute("manufactures", manufactures);
 		
 		return "products/product-form";
 	}
@@ -83,11 +90,16 @@ public class ProductController {
 		
 	}
 	
+	// 제품 수정 서식
 	@GetMapping("showFormForUpdate")
 	public String showFormForUpdate(@RequestParam("productId") int id, Model theModel) {
 		
 		Product product = productService.findById(id);
 		theModel.addAttribute("product", product);
+		
+		// 공장 목록 받아오기
+		List<Manufacture> manufactures = productService.findAllMfg();
+		theModel.addAttribute("manufactures", manufactures);
 		
 		return "products/product-form";
 	}

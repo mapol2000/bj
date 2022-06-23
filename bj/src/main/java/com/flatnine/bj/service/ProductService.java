@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.flatnine.bj.vo.Manufacture;
 import com.flatnine.bj.vo.Product;
 
 public interface ProductService {
@@ -22,5 +23,8 @@ public interface ProductService {
 		
 	// 제품 삭제
 	public void deleteProduct(int id);
+	
+	// 공장 조회
+	public List<Manufacture> findAllMfg();
 
 }

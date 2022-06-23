@@ -2,6 +2,7 @@ package com.flatnine.bj.dao;
 
 import java.util.List;
 
+import com.flatnine.bj.vo.Manufacture;
 import com.flatnine.bj.vo.Product;
 
 public interface ProductDAO {
@@ -20,5 +21,8 @@ public interface ProductDAO {
 	
 	// 제품 삭제
 	void deleteProduct(int id);
+	
+	// 공장 조회
+	List<Manufacture> findAllMfg();
 
 }

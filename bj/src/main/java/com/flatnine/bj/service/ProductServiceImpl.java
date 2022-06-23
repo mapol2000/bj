@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.flatnine.bj.dao.ProductDAO;
+import com.flatnine.bj.vo.Manufacture;
 import com.flatnine.bj.vo.Product;
 
 @Service
@@ -60,6 +61,12 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void deleteProduct(int id) {
 		productDAO.deleteProduct(id);
+	}
+
+	// 공장 조회
+	@Override
+	public List<Manufacture> findAllMfg() {
+		return productDAO.findAllMfg();
 	}
 
 }

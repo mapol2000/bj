@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>	
 	<title>공장 관리</title>
 </head>
 
@@ -57,7 +57,19 @@
 						<td name="mfgName" th:text="${manufacture.mfgName}"></td>
 						<td th:text="${manufacture.mfgHp}"></td>
 						<td th:text="${manufacture.mfgAddr}"></td>
-						<td><a href="#" th:href="@{/manufactures/productList(manufactureName=${manufacture.mfgName})}">제품목록</a></td>
+						<td>
+							<div class="btn-group">
+							  <button type="button" class="btn btn-secondary">제품목록</button>
+							  <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+							    <span class="visually-hidden"></span>
+							  </button>
+							  <ul class="dropdown-menu">
+							    <li><a class="dropdown-item" href="#" th:href="@{/manufactures/productList(manufactureName=${manufacture.mfgName})}">카드뷰</a></li>
+							    <li><hr class="dropdown-divider"></li>
+							    <li><a class="dropdown-item" href="#" th:href="@{/manufactures/showTable(manufactureName=${manufacture.mfgName})}">리스트뷰</a></li>
+							  </ul>
+							</div>
+						</td>
 						<td>
 								<a sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')" th:href="@{/manufactures/showFormForUpdate(manufactureName=${manufacture.mfgName})}" 
 									class="btn btn-info btn-sm">

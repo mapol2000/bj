@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>		
 	<title>공장 제품</title>
 </head>
 
@@ -32,7 +32,7 @@
 		     </li>
 		</ul>
 		<br>
-		<h2>공장 제품 <a th:href="@{/manufactures/productList}" class="btn btn-secondary btn-sm mb-3">카드형식으로 보기</a> </h2>
+		<h2>공장 제품</h2>
 		<hr>
 		
 		<a th:href="@{/products/showFormForAdd}" class="btn btn-primary btn-sm mb-3">제품 등록</a>
@@ -40,6 +40,7 @@
 		<table class="table table-striped text-center">
 			<thead class="thead-dark">
 				<tr>
+					<th width=60></th>
 					<th>제품명</th>
 					<th>종류</th>
 					<th>등록일</th>
@@ -50,7 +51,14 @@
 			
 			<tbody>
 				<tr th:each="product : ${products}">
-					<td th:text="${product.productName}"><a href="#" th:href="@{/products/detail(productId=${product.id})}"></a></td>
+					<td>
+					  <img th:if="${not #strings.isEmpty(product.imagepath)}" th:src="@{${product.imagepath}}" class="card-img-top text-center" alt="이미지 없음">
+					  <img th:if="${product.kind == '귀걸이'} and ${#strings.isEmpty(product.imagepath)}" src="/files/earring/earring.png" class="card-img-top text-center" alt="귀걸이">
+					  <img th:if="${product.kind == '목걸이'} and ${#strings.isEmpty(product.imagepath)}" src="/files/necklace/necklace.png" class="card-img-top text-center" alt="목걸이">
+					  <img th:if="${product.kind == '반지'} and ${#strings.isEmpty(product.imagepath)}" src="/files/ring/ring.png" class="card-img-top text-center" alt="반지">
+					  <img th:if="${product.kind == '팔찌'} and ${#strings.isEmpty(product.imagepath)}" src="/files/bracelet/bracelet.png" class="card-img-top text-center" alt="팔찌">
+					</td>
+					<td><a href="#" th:text="${product.productName}" th:href="@{/products/detail(productId=${product.id})}"></a></td>
 					<td th:text="${product.kind}"></td>
 					<td th:text="${product.regDate}"></td>
 					<td th:text="${product.mfgName}"></td>

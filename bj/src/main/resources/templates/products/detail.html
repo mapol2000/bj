@@ -7,23 +7,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">		
 	<title>제품 상세</title>
 </head>
 
 <body>
-<h5>제품 상세</h5>
+
 	<div class="container">
+	<!-- 헤더 -->
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a class="nav-link" aria-current="page" href="#" th:href="@{/customers/list}">거래처</a>
+		  	</li>
+		  	<li class="nav-item">
+		    	<a class="nav-link active" href="#" th:href="@{/products/list}">제품</a>
+		  	</li>
+			 <li class="nav-item">
+			    <a class="nav-link" href="#">주문</a>
+			 </li>
+			 <li class="nav-item dropdown">
+		    	<a class="nav-link" href="#" th:href="@{/manufactures/list}">공장</a>
+		     </li>
+		     <li class="nav-item">
+		    	<a class="nav-link" href="#" th:href="@{/stock/list}">재고</a>
+		     </li>
+		</ul>
+		<br>
+		<h2>제품 상세</h2>
+		<hr>
+	<!-- 헤더 -->
+	<a th:href="@{/products/list}" class="btn btn-primary btn-lg"><i class="bi bi-arrow-left">뒤로</i></a>
+	
+	
 		<form action="#" th:object="${product}" method="POST">
-			<ul>
-				<li class="hide" th:field="*{id}" th:text="${product.id}"></li>
-				<li th:field="*{productName}" th:text="${product.productName}"></li>
-				<li th:field="*{kind}" th:text="${product.kind}"></li>
-				<li th:field="*{mfgName}" th:text="${product.mfgName}"></li>
-				<li th:field="*{memo}" th:text="${product.memo}"></li>
-				<li th:field="*{regDate}" th:text="${product.regDate}"></li>
-			</ul>
+			<input type="hidden" th:field="*{id}">
+				
+				<div class="text-center">
+				
+					<div class="mb-4">
+						<img th:if="${not #strings.isEmpty(product.imagepath)}" th:src="@{${product.imagepath}}" class="img-fluid" alt="이미지 없음">
+						<img th:if="${product.kind == '귀걸이'} and ${#strings.isEmpty(product.imagepath)}" src="/files/earring/earring.png" class="img-fluid" alt="귀걸이">
+						<img th:if="${product.kind == '목걸이'} and ${#strings.isEmpty(product.imagepath)}" src="/files/necklace/necklace.png" class="img-fluid" alt="목걸이">
+						<img th:if="${product.kind == '반지'} and ${#strings.isEmpty(product.imagepath)}" src="/files/ring/ring.png" class="img-fluid" alt="반지">
+						<img th:if="${product.kind == '팔찌'} and ${#strings.isEmpty(product.imagepath)}" src="/files/bracelet/bracelet.png" class="img-fluid" alt="팔찌">
+					</div>
+					<div class="mb-4">
+						<i>제품명</i>
+						<h2 th:text="${product.productName}"></h2>
+					</div>
+					<div class="mb-4">
+						<i>종류</i>
+						<h2 th:text="${product.kind}"></h2>
+					</div>
+					<div class="mb-4">
+						<i>공장</i>
+						<h2 th:text="${product.mfgName}"></h2>
+					</div>
+					<div class="mb-4">
+						<i>설명</i>
+						<div class="overflow-auto">
+							<h3 th:text="${product.memo} ? ${product.memo} : '설명 없음'"></h3>
+						</div>
+					</div>
+					<div>
+						<i>등록일</i>
+						<h2 th:text="${product.regDate}"></h2>
+					</div>
+					
+				</div>
+			
 		</form>
 		
 		
