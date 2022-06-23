@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.flatnine.bj.dao.ManufactureDAO">
+
+	<!-- 전체 공장 목록 -->
+	<select id="findAll" resultType="com.flatnine.bj.vo.Manufacture">
+		select * from manufacture
+	</select>
+	
+	<!-- 공장 제품 목록 -->
+	<select id="findProducts" resultType="com.flatnine.bj.vo.Product">
+		select * from product where product.mfg_name = #{mfgName}
+	</select>
+	
+	<!-- 공장 등록 -->
+	<select id="saveManufacture">
+		insert into manufacture values (#{mfgName}, #{mfgHp}, #{mfgAddr})
+	</select>
+	
+	<!-- 공장 조회 -->
+	<select id="findById" resultType="com.flatnine.bj.vo.Manufacture">
+		select * from manufacture where mfg_name = #{mfgName}
+	</select>
+	
+	<!-- 공장 수정 -->
+	<update id="updateManufacture">
+		update manufacture set
+			mfg_name	= #{mfgName}
+			,mfg_hp		= #{mfgHp}
+			,mfg_addr	= #{mfgAddr}
+		where mfg_name = #{mfgName}
+	</update>
+	
+	<!-- 공장 삭제 -->
+	<delete id="deleteManufacture">
+		delete from manufacture where mfg_name = #{mfgName}
+	</delete>
+
+</mapper>

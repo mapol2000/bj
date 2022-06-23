@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	
+	<title>제품 상세</title>
+</head>
+
+<body>
+<h5>제품 상세</h5>
+	<div class="container">
+		<form action="#" th:object="${product}" method="POST">
+			<ul>
+				<li class="hide" th:field="*{id}" th:text="${product.id}"></li>
+				<li th:field="*{productName}" th:text="${product.productName}"></li>
+				<li th:field="*{kind}" th:text="${product.kind}"></li>
+				<li th:field="*{mfgName}" th:text="${product.mfgName}"></li>
+				<li th:field="*{memo}" th:text="${product.memo}"></li>
+				<li th:field="*{regDate}" th:text="${product.regDate}"></li>
+			</ul>
+		</form>
+		
+		
+		
+		
+		
+	</div>
+</body>

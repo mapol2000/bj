@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.flatnine.bj.dao.ProductDAO">
+
+	<select id="findAll" resultType="com.flatnine.bj.vo.Product">
+        select * from product
+    </select>
+    
+    <select id="findById" resultType="com.flatnine.bj.vo.Product">
+        select * from product where id = #{id}
+    </select>
+    
+     <select id="saveProduct">
+        insert into product
+        	(product_name, kind, reg_date, mfg_name, memo) 
+        values 
+        	(#{productName}, #{kind}, NOW(), #{mfgName}, #{memo})
+    </select>
+    
+    <update id="updateProduct">
+    	update product set
+    		  product_name 	= #{productName}
+    		, kind 			= #{kind}
+    		, mfg_name 		= #{mfgName}
+    		, memo 			= #{memo}
+    	where id = #{id}
+    </update>
+    
+    <delete id="deleteProduct">
+    	delete from product where id = #{id}
+    </delete>
+
+
+</mapper>

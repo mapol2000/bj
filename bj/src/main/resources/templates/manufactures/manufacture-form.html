@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>공장 등록</title>
+</head>
+
+<body>
+
+	<div class="container mt-3">
+	
+		<h3>공장 관리</h3>
+		<hr>
+		
+		<p class="h4 mb-4">공장 등록</p>
+	
+		<!-- 새로운 공장 등록  -->
+		<form action="#" th:if="!${manufacture.mfgName}" th:action="@{/manufactures/save}"
+						 th:object="${manufacture}" method="POST">
+		
+			<input type="text" th:field="*{mfgName}"
+					class="form-control mb-4 col-4" id="mfgName" placeholder="공장 이름">
+
+			<input type="text" th:field="*{mfgHp}"
+					class="form-control mb-4 col-4" id="mfgHp" placeholder="전화번호(010-1234-5678)">
+					
+			<input type="text" th:field="*{mfgAddr}"
+					class="form-control mb-4 col-4" id="mfgAddr" placeholder="공장 주소">
+				
+			<button type="submit" class="btn btn-info col-2">저장</button>
+						
+		</form>
+		
+		<!-- 거래처 수정  -->
+		<form action="#" th:unless="!${manufacture.mfgName}" th:action="@{/manufactures/update}"
+						 th:object="${manufacture}" method="POST">
+			
+			<input type="text" th:field="*{mfgName}"
+					class="form-control mb-4 col-4" id="mfgName" placeholder="공장 이름">
+
+			<input type="text" th:field="*{mfgHp}"
+					class="form-control mb-4 col-4" id="mfgHp" placeholder="전화번호(010-1234-5678)">
+					
+			<input type="text" th:field="*{mfgAddr}"
+					class="form-control mb-4 col-4" id="mfgAddr" placeholder="공장 주소">
+				
+			<button type="submit" class="btn btn-info col-2">수정</button>
+						
+		</form>
+	
+		<hr>
+		<a th:href="@{/manufactures/list}">공장 리스트</a>
+		
+	</div>
+
+
+</body>
+</html>

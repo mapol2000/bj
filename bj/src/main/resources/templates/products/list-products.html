@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	
+	<title>제품 관리</title>
+</head>
+
+<body>
+	<div class="container">
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a class="nav-link" aria-current="page" href="#" th:href="@{/customers/list}">거래처</a>
+		  	</li>
+		  	<li class="nav-item">
+		    	<a class="nav-link active" href="#" th:href="@{/products/list}">제품</a>
+		  	</li>
+			 <li class="nav-item">
+			    <a class="nav-link" href="#">주문</a>
+			 </li>
+			 <li class="nav-item">
+		    	<a class="nav-link" href="#" th:href="@{/manufactures/list}">공장</a>
+		     </li>
+		     <li class="nav-item">
+		    	<a class="nav-link" href="#" th:href="@{/stock/list}">재고</a>
+		     </li>
+		</ul>
+		<br>
+		<h2>제품 관리 <a th:href="@{/products/showTable}" class="btn btn-secondary btn-sm mb-3">리스트로 보기</a> </h2>
+		<hr>
+		
+		<a th:href="@{/products/showFormForAdd}" class="btn btn-primary btn-sm mb-3">제품 등록</a>
+
+		<div class="hstack gap-3">
+			<div th:each="product : ${products}" class="card mb-5" style="width: 18rem;">
+			  <img src="..." class="card-img-top text-center" alt="...">
+			  <div class="card-body">
+			    <a href="#" th:href="@{/products/detail(productId=${product.id})}"><h5 class="card-title text-center" th:text="${product.productName}"></h5></a>
+			    <p class="card-text text-truncate" th:text="${product.memo}"></p>
+			  </div>
+			  <ul class="list-group list-group-flush">
+			    <li class="list-group-item" th:text="${product.mfgName}"></li>
+			    <li class="list-group-item text-center" th:text="${product.regDate}"></li>
+			  </ul>
+			  <div class="card-body text-center">
+			    <a sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')" href="#" class="card-link btn btn-info btn-sm" th:href="@{/products/showFormForUpdate(productId=${product.id})}">EDIT</a>
+			    <a sec:authorize="hasAnyRole('ROLE_ADMIN')" href="#" class="card-link btn btn-danger btn-sm" th:href="@{/products/delete(productId=${product.id})}" onclick="if (!(confirm('정말 삭제하시겠습니까?'))) return false">DELETE</a>
+			  </div>
+			</div>
+		</div>
+		
+		<!-- Add a logout button -->
+	<form action="#" th:action="@{/logout}" 
+			   method="POST">
+	
+		<input type="submit" value="로그아웃" class="btn btn-outline-primary mt-2" />
+	
+	</form>
+		
+	</div>
+	
+</body>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.flatnine.bj.dao.CustomerDAO">
+
+    <select id="getCustomers" resultType="com.flatnine.bj.vo.Customer">
+        select * from customer
+    </select>
+    
+    <select id="getCustomer" resultType="com.flatnine.bj.vo.Customer">
+        select * from customer where name = #{name}
+    </select>
+    
+    <select id="saveCustomer">
+        insert into customer
+        	(name, biz_type, telephone, address, reg_date) 
+        values 
+        	(#{name}, #{bizType}, #{telephone}, #{address}, NOW())
+    </select>
+    
+    <update id="updateCustomer" >
+    	update customer 
+    		set name 		= #{name}
+    		  , biz_type 	= #{bizType}
+    		  , telephone	= #{telephone}
+    		  , address		= #{address}
+    	where id = #{id}
+    </update>
+    
+    <select id="findById" resultType="com.flatnine.bj.vo.Customer">
+        select * from customer where id = #{id}
+    </select>
+    
+    <delete id="deleteCustomer">
+    	delete from customer where id = #{id}
+    </delete>
+    
+</mapper>

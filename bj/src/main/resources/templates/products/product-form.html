@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>제품 등록</title>
+</head>
+
+<body>
+	
+	<div class="container mt-3">
+	
+		<p class="h4 mb-4">제품 등록</p>
+		
+		<!-- 새로운 제품 등록  -->
+		<form action="#" th:if="!${product.id}" th:action="@{/products/save}"
+						 th:object="${product}" method="POST" enctype="multipart/form-data">
+						 
+			
+			<input type="file">
+			
+			<input type="text" th:field="*{productName}"
+					class="form-control mb-4 mt-4 col-4" id="name" placeholder="제품명">
+
+			<div class="form-check">
+				<input type="radio" th:field="*{kind}" id="kind" value="귀걸이" class="form-check-input">
+				<label th:for="kind" class="form-check-label">귀걸이</label>
+			</div>
+			<div class="form-check">
+				<input type="radio" th:field="*{kind}" id="kind" value="목걸이" class="form-check-input">
+				<label th:for="kind" class="form-check-label">목걸이</label>
+			</div>
+			<div class="form-check">
+				<input type="radio" th:field="*{kind}" id="kind" value="팔찌" class="form-check-input">
+				<label th:for="kind" class="form-check-label">팔찌</label>
+			</div>
+			<div class="form-check">
+				<input type="radio" th:field="*{kind}" id="kind" value="반지" class="form-check-input">
+				<label th:for="kind" class="form-check-label">반지</label>
+			</div>
+			<div class="form-check mb-4">
+				<input type="radio" th:field="*{kind}" id="kind" value="기타" class="form-check-input">
+				<label th:for="kind" class="form-check-label">기타</label>
+				<input type="text" id="kind" class="form-control col-2" placeholder="발찌, 브로치 등">
+			</div>
+
+			<input type="text" th:field="*{mfgName}"
+					class="form-control mb-4 col-4" id="mfgName" placeholder="공장">
+					
+			<textarea th:field="*{memo}"
+					class="form-control mb-4" style="height: 200px" id="memo" placeholder="설명 (공백 포함 500자 이내)">
+			</textarea>
+				
+			<button type="submit" class="btn btn-info col-2">저장</button>
+						
+		</form>
+		
+		<!-- 제품 수정  -->
+		<form action="#" th:unless="!${product.id}" th:action="@{/products/update}"
+						 th:object="${product}" method="POST">
+						 
+			<input type="hidden" th:field="*{id}">
+			
+			<input type="text" th:field="*{productName}"
+					class="form-control mb-4 col-4" id="name" placeholder="제품명">
+
+			<div class="form-check">
+				<input type="radio" th:field="*{kind}" id="kind" value="귀걸이" class="form-check-input">
+				<label th:for="kind" class="form-check-label">귀걸이</label>
+			</div>
+			<div class="form-check">
+				<input type="radio" th:field="*{kind}" id="kind" value="목걸이" class="form-check-input">
+				<label th:for="kind" class="form-check-label">목걸이</label>
+			</div>
+			<div class="form-check">
+				<input type="radio" th:field="*{kind}" id="kind" value="팔찌" class="form-check-input">
+				<label th:for="kind" class="form-check-label">팔찌</label>
+			</div>
+			<div class="form-check">
+				<input type="radio" th:field="*{kind}" id="kind" value="반지" class="form-check-input">
+				<label th:for="kind" class="form-check-label">반지</label>
+			</div>
+			<div class="form-check mb-4">
+				<input type="radio" th:field="*{kind}" id="kind" value="기타" class="form-check-input">
+				<label th:for="kind" class="form-check-label">기타</label>
+				<input type="text" id="kind" class="form-control col-2" placeholder="발찌, 브로치 등">
+			</div>
+
+			<input type="text" th:field="*{mfgName}"
+					class="form-control mb-4 col-4" id="mfgName" placeholder="공장">
+					
+			<textarea th:field="*{memo}"
+					class="form-control mb-4" style="height: 200px" id="memo" placeholder="설명 (공백 포함 500자 이내)">
+			</textarea>
+				
+			<button th:if="!${product.id}" type="submit" class="btn btn-info col-2">저장</button>
+			<button th:unless="!${product.id}" type="submit" class="btn btn-info col-2">수정</button>
+						
+		</form>
+		
+		<hr>
+		<a th:href="@{/products/list}">제품 리스트</a>
+	
+	</div>
+	
+
+</body>

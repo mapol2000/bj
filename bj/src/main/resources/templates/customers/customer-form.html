@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>거래처 등록</title>
+</head>
+
+<body>
+
+	<div class="container mt-3">
+	
+		<h3>거래처 관리</h3>
+		<hr>
+		
+		<p class="h4 mb-4">거래처 등록</p>
+	
+		<!-- 새로운 거래처 등록  -->
+		<form action="#" th:if="!${customer.id}" th:action="@{/customers/save}"
+						 th:object="${customer}" method="POST">
+		
+			<input type="hidden" th:field="*{id}">
+			
+			<input type="text" th:field="*{name}"
+					class="form-control mb-4 col-4" id="name" placeholder="상호명/이름">
+
+			<div class="form-check">
+				<input type="radio" th:field="*{bizType}" id="bizType" value="매장" class="form-check-input">
+				<label th:for="bizType" class="form-check-label">매장</label>
+			</div>
+			<div class="form-check mb-4">
+				<input type="radio" th:field="*{bizType}" id="bizType" value="개인" class="form-check-input">
+				<label th:for="bizType" class="form-check-label">개인</label>
+			</div>
+
+			<input type="text" th:field="*{telephone}"
+					class="form-control mb-4 col-4" id="telephone" placeholder="전화번호(010-1234-5678)">
+					
+			<input type="text" th:field="*{address}"
+					class="form-control mb-4 col-4" id="address" placeholder="주소">
+				
+			<button type="submit" class="btn btn-info col-2">저장</button>
+						
+		</form>
+		
+		<!-- 거래처 수정  -->
+		<form action="#" th:unless="!${customer.id}" th:action="@{/customers/update}"
+						 th:object="${customer}" method="POST">
+		
+			<input type="hidden" th:field="*{id}">
+			
+			<input type="text" th:field="*{name}"
+					class="form-control mb-4 col-4" id="name" placeholder="상호명/이름">
+
+			<div class="form-check">
+				<input type="radio" th:field="*{bizType}" id="bizType" value="매장" class="form-check-input">
+				<label th:for="bizType" class="form-check-label">매장</label>
+			</div>
+			<div class="form-check mb-4">
+				<input type="radio" th:field="*{bizType}" id="bizType" value="개인" class="form-check-input">
+				<label th:for="bizType" class="form-check-label">개인</label>
+			</div>
+
+			<input type="text" th:field="*{telephone}"
+					class="form-control mb-4 col-4" id="telephone" placeholder="전화번호(010-1234-5678)">
+					
+			<input type="text" th:field="*{address}"
+					class="form-control mb-4 col-4" id="address" placeholder="주소">
+				
+			<button type="submit" class="btn btn-info col-2">수정</button>
+						
+		</form>
+	
+		<hr>
+		<a th:href="@{/customers/list}">거래처 리스트</a>
+		
+	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
