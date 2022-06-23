@@ -11,11 +11,12 @@
         select * from product where id = #{id}
     </select>
     
+    <!-- 제품 등록 -->
      <select id="saveProduct">
         insert into product
-        	(product_name, kind, reg_date, mfg_name, memo) 
+        	(product_name, kind, reg_date, mfg_name, memo, imagename, imagepath) 
         values 
-        	(#{productName}, #{kind}, NOW(), #{mfgName}, #{memo})
+        	(#{productName}, #{kind}, NOW(), #{mfgName}, #{memo}, #{imagename}, #{imagepath})
     </select>
     
     <update id="updateProduct">

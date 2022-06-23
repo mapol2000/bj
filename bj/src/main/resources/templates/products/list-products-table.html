@@ -40,6 +40,7 @@
 		<table class="table table-striped text-center">
 			<thead class="thead-dark">
 				<tr>
+					<th></th>
 					<th>제품명</th>
 					<th>종류</th>
 					<th>등록일</th>
@@ -50,6 +51,13 @@
 			
 			<tbody>
 				<tr th:each="product : ${products}">
+					<td width=60>
+					  <img th:if="${not #strings.isEmpty(product.imagepath)}" th:src="@{${product.imagepath}}" class="card-img-top text-center" alt="이미지 없음">
+					  <img th:if="${product.kind == '귀걸이'} and ${#strings.isEmpty(product.imagepath)}" src="/files/earring/earring.png" class="card-img-top text-center" alt="귀걸이">
+					  <img th:if="${product.kind == '목걸이'} and ${#strings.isEmpty(product.imagepath)}" src="/files/necklace/necklace.png" class="card-img-top text-center" alt="목걸이">
+					  <img th:if="${product.kind == '반지'} and ${#strings.isEmpty(product.imagepath)}" src="/files/ring/ring.png" class="card-img-top text-center" alt="반지">
+					  <img th:if="${product.kind == '팔찌'} and ${#strings.isEmpty(product.imagepath)}" src="/files/bracelet/bracelet.png" class="card-img-top text-center" alt="팔찌">
+					</td>
 					<td th:text="${product.productName}"></td>
 					<td th:text="${product.kind}"></td>
 					<td th:text="${product.regDate}"></td>

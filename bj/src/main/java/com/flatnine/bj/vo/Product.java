@@ -8,6 +8,8 @@ public class Product {
 	private String regDate;
 	private String mfgName;
 	private String memo;
+	private String imagename;
+	private String imagepath;
 	
 	public Product() {
 		
@@ -61,10 +63,27 @@ public class Product {
 		this.memo = memo;
 	}
 
+	public String getImagename() {
+		return imagename;
+	}
+
+	public void setImagename(String imagename) {
+		this.imagename = imagename;
+	}
+
+	public String getImagepath() {
+		return imagepath;
+	}
+
+	public void setImagepath(String imagepath) {
+		this.imagepath = imagepath;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", productName=" + productName + ", kind=" + kind + ", regDate=" + regDate
-				+ ", mfgName=" + mfgName + ", memo=" + memo + "]";
+				+ ", mfgName=" + mfgName + ", memo=" + memo + ", imagename=" + imagename + ", imagepath=" + imagepath
+				+ "]";
 	}
 
 	

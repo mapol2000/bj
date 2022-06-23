@@ -23,7 +23,7 @@
 						 th:object="${product}" method="POST" enctype="multipart/form-data">
 						 
 			
-			<input type="file">
+			<input type="file" name="file">
 			
 			<input type="text" th:field="*{productName}"
 					class="form-control mb-4 mt-4 col-4" id="name" placeholder="제품명">

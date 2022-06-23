@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.flatnine.bj.service.ProductService;
 import com.flatnine.bj.vo.Product;
@@ -57,10 +58,10 @@ public class ProductController {
 	}
 	
 	@PostMapping("/save")
-	public String saveProduct(Product product) {
+	public String saveProduct(Product product, MultipartFile file) throws Exception {
 		
 		try {
-			productService.saveProduct(product);
+			productService.saveProduct(product, file);
 			return "redirect:/products/list";
 		} catch (Exception exc) {
 			exc.printStackTrace();

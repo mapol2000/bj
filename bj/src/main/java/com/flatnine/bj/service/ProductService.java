@@ -2,6 +2,7 @@ package com.flatnine.bj.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
 
 import com.flatnine.bj.vo.Product;
 
@@ -11,7 +12,7 @@ public interface ProductService {
 	public List<Product> findAll();
 		
 	// 제품 등록
-	public void saveProduct(Product product);
+	public void saveProduct(Product product, MultipartFile file);
 		
 	// 제품 수정
 	public void updateProduct(Product product);
