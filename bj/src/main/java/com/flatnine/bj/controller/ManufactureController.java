@@ -92,6 +92,7 @@ public class ManufactureController {
 	// 공장 제품 목록 (테이블)
 	@GetMapping("/showTable")
 	public String showTable(@RequestParam("manufactureName") String mfgName, Model theModel) {
+		
 		List<Product> products = manufactureService.findProducts(mfgName);
 		theModel.addAttribute("products", products);
 		

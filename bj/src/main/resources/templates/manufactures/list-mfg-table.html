@@ -50,7 +50,7 @@
 			
 			<tbody>
 				<tr th:each="product : ${products}">
-					<td th:text="${product.productName}"></td>
+					<td th:text="${product.productName}"><a href="#" th:href="@{/products/detail(productId=${product.id})}"></a></td>
 					<td th:text="${product.kind}"></td>
 					<td th:text="${product.regDate}"></td>
 					<td th:text="${product.mfgName}"></td>

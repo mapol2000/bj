@@ -22,12 +22,22 @@ public class ProductController {
 		productService = theProductService;
 	}
 	
+	// 제품 조회(카드뷰)
 	@GetMapping("/list")
 	public String findAll(Model theModel) {
 		List<Product> products = productService.findAll();
 		theModel.addAttribute("products", products);
 		
 		return "products/list-products";
+	}
+	
+	// 제품 조회(테이블)
+	@GetMapping("/showTable")
+	public String showTable(Model theModel) {
+		List<Product> products = productService.findAll();
+		theModel.addAttribute("products", products);
+		
+		return "products/list-products-table";
 	}
 	
 	@GetMapping("/detail")
@@ -93,13 +103,7 @@ public class ProductController {
 		return "redirect:";
 	}
 	
-	@GetMapping("/showTable")
-	public String showTable(Model theModel) {
-		List<Product> products = productService.findAll();
-		theModel.addAttribute("products", products);
-		
-		return "products/list-products-table";
-	}
+	
 	
 
 }

@@ -3,6 +3,20 @@
 
 <mapper namespace="com.flatnine.bj.dao.StockDAO">
 
+	<!-- 모든 공장 조회 -->
+	<select id="findAllMfg" resultType="com.flatnine.bj.vo.Manufacture">
+		select * from manufacture
+	</select>
+	
+	<!-- 모든 제품 조회 -->
+	<select id="findAllProd" resultType="com.flatnine.bj.vo.Product">
+		select * from product
+	</select>
+
+	<!-- 선택한 공장의 제품 목록 -->
+	<select id="findProdByMfg" resultType="com.flatnine.bj.vo.Product">
+		select * from product where mfg_name = #{mfgName}
+	</select>
 	
 
 

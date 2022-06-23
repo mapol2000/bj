@@ -15,6 +15,8 @@
 <body>
 
 	<div class="container">
+	
+	
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
 				<a class="nav-link" aria-current="page" href="#" th:href="@{/customers/list}">거래처</a>
@@ -35,13 +37,53 @@
 		<br>
 		<h2>재고 관리</h2>
 		<hr>
-		<div class="btn-group" role="group" aria-label="Basic outlined example">
+		<div class="btn-group mb-4" role="group" aria-label="Basic outlined example">
 		  <a class="btn btn-outline-primary" href="#">재고현황</a>
 		  <a class="btn btn-outline-primary" href="#" th:href="@{/stock/showFormForAdd}">재고등록</a>
 		  <a class="btn btn-outline-primary" href="#">Right</a>
 		</div>
 		
-	
+		<div>
+			<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+			  <option selected>공장별/제품별</option>
+			  <option value="공장">공장</option>
+			  <option value="제품">제품</option>
+			</select>
+			
+			<!-- 공장 선택시 공장 목록 -->
+			<form action="#" th:object="${manufactures}" method="post">
+				<select>
+				  <option th:each="manufacture : ${manufactures}" 
+				  		  value="mfgName"
+				          th:text="${manufacture.mfgName}">공장 리스트</option>
+				</select>
+			</form>
+			
+			<!-- 제품 선택시 제품 목록 -->
+			<form action="#" th:object="${products}" method="post">
+				<select>
+				  <option th:each="product : ${products}" 
+				          th:text="${product.productName}">제품 리스트</option>
+				</select>
+			</form>
+			
+			<!-- 선택한 공장의 제품 목록 -->
+			<form action="#" th:object="${prodByMfg}" method="post">
+				<select>
+				  <option th:each="product : ${prodByMfg}" 
+				          th:text="${product.productName}">제품 리스트</option>
+				</select>
+			</form>
+		</div>
+		
+		
+		
+		
+		
 	</div>
 
+
+
 </body>
+
+</html>
