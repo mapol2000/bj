@@ -8,7 +8,10 @@
     
     <!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>		
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/form-stock-add.js}"></script>
+	
 	<title>재고 관리</title>
 </head>
 
@@ -39,45 +42,34 @@
 		<hr>
 		<div class="btn-group mb-4" role="group" aria-label="Basic outlined example">
 		  <a class="btn btn-outline-primary" href="#">재고현황</a>
-		  <a class="btn btn-outline-primary" href="#" th:href="@{/stock/showFormForAdd}">재고등록</a>
-		  <a class="btn btn-outline-primary" href="#">Right</a>
+		  <a class="btn btn-outline-primary" id="stockRegBtn" href="#" th:href="@{/stock/showFormForAdd}">재고등록</a>
+		  <a class="btn btn-outline-primary" id="rightBtn" href="#">Right</a>
 		</div>
 		
-		<div>
-			<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+		<div id="selectBox">
+			<select id="first" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
 			  <option selected>공장별/제품별</option>
 			  <option value="공장">공장</option>
 			  <option value="제품">제품</option>
 			</select>
 			
-			<!-- 공장 선택시 공장 목록 -->
-			<form action="#" th:object="${manufactures}" method="post">
-				<select>
-				  <option th:each="manufacture : ${manufactures}" 
-				  		  value="mfgName"
-				          th:text="${manufacture.mfgName}">공장 리스트</option>
-				</select>
-			</form>
+			<!-- 위에서 공장 선택시 fragment 끼우기 -->
+			<br>
+			<div id="mfgSelected" th:replace="stock-fragment/select :: mfgSelected"></div>
 			
-			<!-- 제품 선택시 제품 목록 -->
-			<form action="#" th:object="${products}" method="post">
-				<select>
-				  <option th:each="product : ${products}" 
-				          th:text="${product.productName}">제품 리스트</option>
-				</select>
-			</form>
+			<!-- 제품 선택시 fragment 끼우기 -->
+			<br>
+			<div id="prodSelected" th:replace="stock-fragment/select :: prodSelected"></div>
 			
 			<!-- 선택한 공장의 제품 목록 -->
+			<br>
 			<form action="#" th:object="${prodByMfg}" method="post">
-				<select>
+				<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
 				  <option th:each="product : ${prodByMfg}" 
 				          th:text="${product.productName}">제품 리스트</option>
 				</select>
 			</form>
 		</div>
-		
-		
-		
 		
 		
 	</div>

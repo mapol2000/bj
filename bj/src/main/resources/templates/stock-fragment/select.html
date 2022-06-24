@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <body>
+  
+  <!-- 제품 선택시 제품 목록 -->
+    <div th:fragment="prodSelected" id="prodSelected">
+    	<form action="#" th:object="${products}" method="post">
+			<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+					 <option th:each="product : ${products}" 
+					          th:text="${product.productName}">제품 리스트</option>
+			</select>
+		</form>
+    </div>
+    
+    <!-- 공장 선택시 제품 목록 -->
+	<div th:fragment="mfgSelected" id="mfgSelected">
+		<form action="#" th:object="${manufactures}" method="post">
+			<select id="second" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+					 <option th:each="manufacture : ${manufactures}" 
+					  		  value="mfgName"
+					          th:text="${manufacture.mfgName}">공장 리스트</option>
+			</select>
+		</form>
+	</div>
+  </body>
+  
+</html>
